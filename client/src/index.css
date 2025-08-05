@@ -64,6 +64,14 @@
     font-family: 'Share Tech Mono', monospace;
   }
   
+  .font-orbitron {
+    font-family: 'Orbitron', monospace;
+  }
+  
+  .font-tech-mono {
+    font-family: 'Share Tech Mono', monospace;
+  }
+  
   .nav-dropdown {
     opacity: 0;
     visibility: hidden;
