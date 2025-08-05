@@ -40,15 +40,15 @@ export default function Home() {
                 data-testid="hero-title"
               >
                 Powerful Hosting for{" "}
-                <span className="text-accent bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">
+                <span className="text-accent">
                   Bots
                 </span>
                 ,{" "}
-                <span className="text-accent bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">
+                <span className="text-accent">
                   Websites
                 </span>
                 , and{" "}
-                <span className="text-accent bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">
+                <span className="text-accent">
                   Games
                 </span>
               </h1>
@@ -63,7 +63,7 @@ export default function Home() {
               
               <div className="flex flex-col sm:flex-row gap-6">
                 <button 
-                  className="border-2 border-accent hover:bg-accent/10 text-white px-8 py-4 rounded-xl font-tech-mono font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-accent/20" 
+                  className="bg-accent hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-tech-mono font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-accent/20" 
                   data-testid="button-get-started"
                 >
                   {siteConfig.hero.ctaButtons.primary}
@@ -101,9 +101,9 @@ export default function Home() {
         <div className="container mx-auto px-4">
           {/* Section Tag */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 mb-6">
-              <span className="text-2xl">{siteConfig.sectionTags.services.icon}</span>
-              <span className="text-accent font-tech-mono font-medium uppercase tracking-wider">
+            <div className="inline-flex items-center space-x-2 mb-6 bg-accent px-4 py-2 rounded-xl">
+              <i className={`${siteConfig.sectionTags.services.icon} text-white`}></i>
+              <span className="text-white font-tech-mono font-medium uppercase tracking-wider">
                 {siteConfig.sectionTags.services.text}
               </span>
             </div>
@@ -112,7 +112,7 @@ export default function Home() {
               style={{ fontFamily: siteConfig.fonts.heading }}
               data-testid="services-title"
             >
-              What We Provide
+              What We <span className="text-accent">Provide</span>
             </h2>
             <p 
               className="text-secondary text-xl max-w-3xl mx-auto leading-relaxed font-tech-mono" 
@@ -158,9 +158,9 @@ export default function Home() {
         <div className="container mx-auto px-4">
           {/* Section Tag */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 mb-6">
-              <span className="text-2xl">{siteConfig.sectionTags.features.icon}</span>
-              <span className="text-accent font-tech-mono font-medium uppercase tracking-wider">
+            <div className="inline-flex items-center space-x-2 mb-6 bg-accent px-4 py-2 rounded-xl">
+              <i className={`${siteConfig.sectionTags.features.icon} text-white`}></i>
+              <span className="text-white font-tech-mono font-medium uppercase tracking-wider">
                 {siteConfig.sectionTags.features.text}
               </span>
             </div>
@@ -169,7 +169,7 @@ export default function Home() {
               style={{ fontFamily: siteConfig.fonts.heading }}
               data-testid="features-title"
             >
-              Our Features
+              Our <span className="text-accent">Features</span>
             </h2>
             <p 
               className="text-secondary text-xl max-w-3xl mx-auto leading-relaxed font-tech-mono" 
@@ -199,9 +199,9 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             {/* Section Tag */}
             <div className="text-center mb-16">
-              <div className="inline-flex items-center space-x-2 mb-6">
-                <span className="text-2xl">{siteConfig.sectionTags.why.icon}</span>
-                <span className="text-accent font-tech-mono font-medium uppercase tracking-wider">
+              <div className="inline-flex items-center space-x-2 mb-6 bg-accent px-4 py-2 rounded-xl">
+                <i className={`${siteConfig.sectionTags.why.icon} text-white`}></i>
+                <span className="text-white font-tech-mono font-medium uppercase tracking-wider">
                   {siteConfig.sectionTags.why.text}
                 </span>
               </div>
@@ -210,7 +210,7 @@ export default function Home() {
                 style={{ fontFamily: siteConfig.fonts.heading }}
                 data-testid="why-title"
               >
-                Why Portix Host?
+                Why Portix <span className="text-accent">Host</span>?
               </h2>
               <p 
                 className="text-secondary text-xl max-w-3xl mx-auto leading-relaxed font-tech-mono" 

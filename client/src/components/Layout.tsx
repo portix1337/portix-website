@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import DiscountBanner from "./DiscountBanner";
 
 interface LayoutProps {
   children: ReactNode;
@@ -9,10 +8,20 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-primary text-white">
-      <DiscountBanner />
+    <div className="min-h-screen bg-primary">
+      {/* Discount Banner */}
+      <div className="bg-accent text-white text-center py-3" data-testid="discount-banner">
+        <p className="font-tech-mono text-sm">
+          <span className="font-medium">🎉 LIMITED TIME:</span> Get 30% OFF your first month with code <span className="bg-white/20 px-2 py-1 rounded font-bold">WELCOME30</span>
+        </p>
+      </div>
+      
       <Header />
-      <main>{children}</main>
+      
+      <main className="flex-1">
+        {children}
+      </main>
+      
       <Footer />
     </div>
   );

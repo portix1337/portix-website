@@ -1,55 +1,35 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { siteConfig } from "@/lib/config";
 
 interface FAQItemProps {
   question: string;
   answer: string;
-  index: number;
 }
 
-export default function FAQItem({ question, answer, index }: FAQItemProps) {
+export default function FAQItem({ question, answer }: FAQItemProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const faq = siteConfig.faqs[index];
 
   return (
-    <div 
-      className="bg-primary/50 backdrop-blur-sm rounded-2xl border border-custom/50 hover:border-accent/30 transition-all duration-300 shadow-lg" 
-      data-testid={`faq-item-${index}`}
-    >
-      <button 
-        className="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-primary/70 rounded-2xl transition-all duration-300"
+    <div className="border border-custom rounded-xl bg-secondary/50" data-testid="faq-item">
+      <button
         onClick={() => setIsOpen(!isOpen)}
-        data-testid={`button-faq-${index}`}
+        className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-accent/5 transition-colors rounded-xl"
+        data-testid="faq-question-button"
       >
-        <div className="flex items-center space-x-4">
-          {faq?.icon && (
-            <div className="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center">
-              <i className={`${faq.icon} text-accent`}></i>
-            </div>
-          )}
-          <span 
-            className="font-bold text-lg font-orbitron" 
-            style={{ fontFamily: siteConfig.fonts.heading }}
-            data-testid={`faq-question-${index}`}
-          >
-            {question}
-          </span>
-        </div>
+        <span className="text-lg font-medium text-white font-orbitron pr-4" data-testid="faq-question">
+          {question}
+        </span>
         <ChevronDown 
-          className={`w-6 h-6 text-accent transform transition-all duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-5 h-5 text-accent transition-transform duration-200 flex-shrink-0 ${
+            isOpen ? 'rotate-180' : ''
+          }`}
         />
       </button>
       {isOpen && (
-        <div className="px-8 pb-8" data-testid={`faq-answer-${index}`}>
-          <div className="pl-14">
-            <p 
-              className="text-secondary text-lg leading-relaxed font-tech-mono" 
-              style={{ fontFamily: siteConfig.fonts.body }}
-            >
-              {answer}
-            </p>
-          </div>
+        <div className="px-6 pb-6 border-t border-custom/50 pt-4" data-testid="faq-answer">
+          <p className="text-secondary leading-relaxed font-tech-mono">
+            {answer}
+          </p>
         </div>
       )}
     </div>

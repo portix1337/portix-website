@@ -1,15 +1,37 @@
 export const siteConfig = {
-  name: "Portix Host",
-  description: "Powerful Hosting for Bots, Websites, and Games",
-  
-  // Typography
+  // Brand Information
+  brand: {
+    name: {
+      first: "Portix", // White text
+      second: "Host"   // Blue text (#0195f4)
+    },
+    logo: "/api/placeholder/40/40",
+    tagline: "Built for developers who demand power and simplicity."
+  },
+
+  // Color Configuration
+  colors: {
+    primary: "#060201",
+    secondary: "#0F1014", 
+    accent: "#0195f4", // Main blue color
+    text: {
+      primary: "#ffffff",
+      secondary: "#9ca3af"
+    },
+    background: {
+      primary: "#060201",
+      secondary: "#0F1014"
+    }
+  },
+
+  // Typography Configuration (Reduced size for clean look)
   fonts: {
     heading: "'Orbitron', sans-serif",
     body: "'Share Tech Mono', monospace",
     headingSizes: {
-      hero: "text-5xl lg:text-7xl",
-      section: "text-3xl lg:text-5xl",
-      card: "text-xl lg:text-2xl"
+      hero: "text-4xl lg:text-6xl",
+      section: "text-2xl lg:text-4xl", 
+      card: "text-lg lg:text-xl"
     }
   },
   
@@ -23,48 +45,50 @@ export const siteConfig = {
   hero: {
     title: "Powerful Hosting for Bots, Websites, and Games",
     subtitle: "Portix Host delivers reliable and budget-friendly hosting solutions with unmatched uptime.",
-    image: "/api/placeholder/600/400", // Discord illustration
+    image: "/api/placeholder/600/400", // Discord illustration with edge dark effect
     ctaButtons: {
       primary: "Get Started",
       secondary: "Learn More"
     }
   },
   
-  // Section tags
+  // Section tags (with icons instead of emojis)
   sectionTags: {
     services: {
-      icon: "⭐",
+      icon: "fas fa-star",
       text: "What We Offer"
     },
     features: {
-      icon: "✨",
+      icon: "fas fa-sparkles", 
       text: "We Won't Disappoint"
     },
     why: {
-      icon: "🚀",
+      icon: "fas fa-rocket",
       text: "Why Choose Us"
     },
     testimonials: {
-      icon: "💬",
+      icon: "fas fa-comments",
       text: "Customer Love"
     },
     faq: {
-      icon: "❓",
+      icon: "fas fa-question-circle",
       text: "Got Questions?"
     }
   },
 
-  // Navigation
+  // Navigation with icons
   navigation: {
     items: [
       {
-        name: "HOME",
+        name: "Home",
         href: "/",
-        type: "link"
+        type: "link",
+        icon: "fas fa-home"
       },
       {
         name: "Bot Hosting",
         type: "dropdown",
+        icon: "fas fa-robot",
         items: [
           {
             name: "Discord Bot Hosting",
@@ -72,7 +96,7 @@ export const siteConfig = {
             icon: "fab fa-discord"
           },
           {
-            name: "Telegram Bot Hosting", 
+            name: "Telegram Bot Hosting",
             href: "/telegram-bot-hosting",
             icon: "fab fa-telegram"
           }
@@ -80,64 +104,47 @@ export const siteConfig = {
       },
       {
         name: "Web Hosting",
-        type: "dropdown",
+        type: "dropdown", 
+        icon: "fas fa-globe",
         items: [
           {
             name: "WordPress Hosting",
-            href: "/wordpress-hosting", 
+            href: "/wordpress-hosting",
             icon: "fab fa-wordpress"
           },
           {
             name: "Shared Hosting",
             href: "/shared-hosting",
-            icon: "fas fa-server"
+            icon: "fas fa-share-nodes"
           }
         ]
       },
       {
         name: "Game Hosting",
-        type: "dropdown",
-        items: [
-          {
-            name: "Minecraft Hosting",
-            href: "#minecraft",
-            icon: "fas fa-cube"
-          }
-        ]
+        href: "/game-hosting",
+        type: "link",
+        icon: "fas fa-gamepad"
       },
       {
-        name: "LEARN",
-        type: "dropdown",
-        items: [
-          {
-            name: "FAQ",
-            href: "/faq",
-            icon: "fas fa-question-circle"
-          },
-          {
-            name: "About Us",
-            href: "/about-us",
-            icon: "fas fa-users"
-          },
-          {
-            name: "Blog",
-            href: "/blog",
-            icon: "fas fa-blog"
-          }
-        ]
+        name: "Learn",
+        href: "/docs",
+        type: "link",
+        icon: "fas fa-book"
       }
     ],
     clientArea: {
+      name: "Client Area",
+      icon: "fas fa-user",
       items: [
         {
-          name: "Billing",
-          href: "#billing",
-          icon: "fas fa-credit-card"
+          name: "Panel",
+          href: "#panel",
+          icon: "fas fa-tachometer-alt"
         },
         {
-          name: "Panel",
-          href: "#panel", 
-          icon: "fas fa-tachometer-alt"
+          name: "Billing",
+          href: "#billing", 
+          icon: "fas fa-credit-card"
         },
         {
           name: "Login",
@@ -151,311 +158,388 @@ export const siteConfig = {
   // Services
   services: [
     {
-      id: "bot-hosting",
+      id: "bot",
       name: "Bot Hosting",
-      description: "Deploy and manage Discord and Telegram bots with 24/7 uptime, instant deployment, and scalable resources.",
+      description: "Host your Discord and Telegram bots with 99.9% uptime and powerful infrastructure.",
       icon: "fas fa-robot"
     },
     {
-      id: "web-hosting", 
+      id: "web", 
       name: "Web Hosting",
-      description: "Fast and secure hosting for WordPress sites, applications, and static websites with free SSL certificates.",
+      description: "Fast and reliable hosting for your websites and web applications with SSD storage.",
       icon: "fas fa-globe"
     },
     {
-      id: "game-hosting",
+      id: "game",
       name: "Game Hosting", 
-      description: "Low-latency game servers for Minecraft and other popular games with DDoS protection and instant setup.",
+      description: "Low-latency game servers optimized for the best gaming experience.",
       icon: "fas fa-gamepad"
     }
   ],
-  
+
   // Features
   features: [
     {
-      name: "99.9% Uptime",
-      description: "Guaranteed uptime with our redundant infrastructure and monitoring systems.",
-      icon: "check"
-    },
-    {
-      name: "Instant Deployment",
-      description: "Get your services online in seconds with our automated deployment system.",
-      icon: "zap"
-    },
-    {
       name: "24/7 Support",
-      description: "Expert support team available around the clock to help you succeed.",
+      description: "Get help whenever you need it with our round-the-clock customer support team.",
       icon: "headphones"
     },
     {
+      name: "99.9% Uptime",
+      description: "Reliable infrastructure ensures your projects stay online when it matters most.",
+      icon: "zap"
+    },
+    {
       name: "DDoS Protection",
-      description: "Advanced protection against attacks to keep your services running smoothly.",
+      description: "Advanced security measures protect your applications from malicious attacks.",
       icon: "shield"
     },
     {
-      name: "SSD Storage",
-      description: "Fast NVMe SSD storage for optimal performance and quick data access.",
+      name: "Easy Setup",
+      description: "Get your hosting up and running in minutes with our intuitive control panel.",
+      icon: "check"
+    },
+    {
+      name: "Global Network",
+      description: "Servers worldwide ensure fast loading times for your global audience.",
       icon: "server"
     },
     {
-      name: "Free SSL",
-      description: "Automatic SSL certificates for all your domains at no extra cost.",
+      name: "Secure Hosting",
+      description: "SSL certificates and security monitoring keep your data safe and protected.",
       icon: "lock"
     }
   ],
-  
-  // Bot hosting plans
+
+  // Testimonials
+  testimonials: [
+    {
+      text: "Portix Host has been incredible for hosting my Discord bot. The uptime is fantastic and support is always helpful when I need assistance.",
+      name: "Alex Chen",
+      role: "Discord Bot Developer",
+      rating: 5,
+      avatar: "/api/placeholder/64/64"
+    },
+    {
+      text: "I've been hosting my gaming community's website here for over a year. The performance is consistently excellent and the prices are unbeatable.",
+      name: "Sarah Williams", 
+      role: "Gaming Community Manager",
+      rating: 5,
+      avatar: "/api/placeholder/64/64"
+    },
+    {
+      text: "As a developer, I appreciate the technical features and API access. Portix Host makes it easy to deploy and manage my applications.",
+      name: "Michael Rodriguez",
+      role: "Full Stack Developer",
+      rating: 5,
+      avatar: "/api/placeholder/64/64"
+    }
+  ],
+
+  // Discord Bot Hosting Plans
   botHostingPlans: [
     {
-      name: "Basic",
+      name: "Startup",
       price: "$0.75",
       period: "/month",
-      description: "Perfect for small Discord bots",
       features: [
-        "512 MB RAM",
-        "1 GB SSD Storage", 
-        "Unmetered Bandwidth",
-        "Instant Deployment",
-        "99.9% Uptime"
+        "512 MB DDR5 RAM",
+        "1 GB NVMe SSD", 
+        "10 GBit/s Connection",
+        "24/7 Support",
+        "99.9% Uptime Guarantee"
       ],
       popular: false
     },
     {
       name: "Standard",
-      price: "$1.75", 
-      period: "/month",
-      description: "Great for growing Discord bots",
+      price: "$2.99",
+      period: "/month", 
       features: [
-        "1 GB RAM",
-        "2 GB SSD Storage",
-        "Unmetered Bandwidth", 
-        "Instant Deployment",
-        "99.9% Uptime"
+        "2 GB DDR5 RAM",
+        "5 GB NVMe SSD",
+        "10 GBit/s Connection",
+        "Priority Support",
+        "99.9% Uptime Guarantee",
+        "Custom Domain"
       ],
       popular: true
     },
     {
       name: "Ultimate",
-      price: "$2.75",
-      period: "/month", 
-      description: "For high-traffic Discord bots",
+      price: "$7.99",
+      period: "/month",
       features: [
-        "2 GB RAM",
-        "4 GB SSD Storage",
-        "Unmetered Bandwidth",
-        "Instant Deployment", 
-        "99.9% Uptime"
+        "4 GB DDR5 RAM",
+        "10 GB NVMe SSD",
+        "10 GBit/s Connection",
+        "VIP Support",
+        "99.9% Uptime Guarantee",
+        "Custom Domain",
+        "Advanced Analytics"
       ],
       popular: false
     }
   ],
-  
-  // Web hosting plans
-  webHostingPlans: [
+
+  // WordPress Hosting Plans
+  wordpressPlans: [
     {
-      name: "Basic",
+      name: "Startup",
       price: "$0.75",
       period: "/month",
-      description: "Perfect for personal websites",
       features: [
-        "1 Website",
-        "1 GB SSD Storage",
-        "10 GB Bandwidth",
-        "Free SSL",
-        "99.9% Uptime"
+        "512 MB DDR5 RAM",
+        "1 GB NVMe SSD",
+        "10 GBit/s Connection",
+        "2 Databases",
+        "1 Allocation",
+        "1 Included Backup",
+        "Create 1 Additional Server"
       ],
       popular: false
     },
     {
       name: "Standard", 
-      price: "$1.75",
+      price: "$2.99",
       period: "/month",
-      description: "Great for small businesses",
       features: [
-        "5 Websites",
-        "5 GB SSD Storage", 
-        "50 GB Bandwidth",
-        "Free SSL + Email",
-        "99.9% Uptime"
+        "2 GB DDR5 RAM",
+        "2 GB NVMe SSD",
+        "10 GBit/s Connection",
+        "3 Databases",
+        "2 Allocations", 
+        "2 Included Backups",
+        "Create 1 Additional Server"
       ],
       popular: true
     },
     {
       name: "Ultimate",
-      price: "$2.75",
+      price: "$7.99",
       period: "/month",
-      description: "For growing businesses", 
       features: [
-        "Unlimited Websites",
-        "10 GB SSD Storage",
-        "Unmetered Bandwidth",
-        "Free SSL + Email + Subdomains",
-        "99.9% Uptime"
+        "4 GB DDR5 RAM",
+        "4 GB NVMe SSD", 
+        "10 GBit/s Connection",
+        "4 Databases",
+        "3 Allocations",
+        "3 Included Backups",
+        "Create 1 Additional Server"
       ],
       popular: false
     }
   ],
-  
-  // Testimonials
-  testimonials: [
-    {
-      name: "Alex Johnson",
-      role: "Discord Bot Developer",
-      avatar: "/api/placeholder/64/64",
-      rating: 5,
-      text: "Portix Host has been incredible for my Discord bot hosting needs. The deployment is instant and the uptime is exactly as promised. Best hosting service I've used!",
-      featured: true
-    },
-    {
-      name: "Sarah Chen",
-      role: "Full-Stack Developer", 
-      avatar: "/api/placeholder/64/64",
-      rating: 5,
-      text: "The performance and reliability are outstanding. My web applications run smoothly and the support team is always helpful. Highly recommended!",
-      featured: false
-    },
-    {
-      name: "Mike Rodriguez",
-      role: "Gaming Community Owner",
-      avatar: "/api/placeholder/64/64", 
-      rating: 5,
-      text: "Running multiple game servers has never been easier. The control panel is intuitive and the server performance is excellent for our community.",
-      featured: false
-    }
-  ],
 
-  // Team members
-  team: [
+  // Shared Hosting Plans (same as WordPress)
+  sharedPlans: [
     {
-      name: "David Smith",
-      role: "Founder & Lead Developer",
-      title: "Chief Technology Officer",
-      avatar: "/api/placeholder/300/300",
-      description: "David founded Portix Host with over 8 years of experience in cloud infrastructure and web development. He oversees our technical architecture and ensures we deliver cutting-edge hosting solutions that scale with our customers' needs.",
-      featured: true
+      name: "Startup",
+      price: "$0.75",
+      period: "/month",
+      features: [
+        "512 MB DDR5 RAM",
+        "1 GB NVMe SSD",
+        "10 GBit/s Connection",
+        "2 Databases",
+        "1 Allocation",
+        "1 Included Backup",
+        "Create 1 Additional Server"
+      ],
+      popular: false
+    },
+    {
+      name: "Standard",
+      price: "$2.99", 
+      period: "/month",
+      features: [
+        "2 GB DDR5 RAM",
+        "2 GB NVMe SSD",
+        "10 GBit/s Connection",
+        "3 Databases",
+        "2 Allocations",
+        "2 Included Backups", 
+        "Create 1 Additional Server"
+      ],
+      popular: true
+    },
+    {
+      name: "Ultimate",
+      price: "$7.99",
+      period: "/month", 
+      features: [
+        "4 GB DDR5 RAM",
+        "4 GB NVMe SSD",
+        "10 GBit/s Connection",
+        "4 Databases",
+        "3 Allocations",
+        "3 Included Backups",
+        "Create 1 Additional Server"
+      ],
+      popular: false
     }
   ],
 
   // FAQ
   faqs: [
     {
-      question: "How quickly can I deploy my bot?",
-      answer: "Your bot can be deployed within seconds of completing your order. Our automated deployment system instantly provisions your resources and starts your bot.",
-      icon: "fas fa-rocket"
+      question: "What types of hosting do you offer?",
+      answer: "We offer Discord bot hosting, Telegram bot hosting, WordPress hosting, shared hosting, and game server hosting. All plans include 24/7 support and 99.9% uptime guarantee.",
+      icon: "fas fa-server"
     },
     {
-      question: "What happens if my bot goes down?",
-      answer: "We provide automatic restart functionality and 24/7 monitoring. If your bot encounters any issues, our system will automatically attempt to restart it and notify our support team.",
-      icon: "fas fa-shield-alt"
+      question: "How quickly can I get my hosting set up?",
+      answer: "Most hosting services are activated within 5-10 minutes after payment confirmation. Our automated system ensures rapid deployment so you can get started immediately.",
+      icon: "fas fa-clock"
+    },
+    {
+      question: "Do you offer refunds?",
+      answer: "Yes, we offer a 7-day money-back guarantee for all new customers. If you're not satisfied with our service, we'll provide a full refund within the first week.",
+      icon: "fas fa-money-bill-wave"
     },
     {
       question: "Can I upgrade my plan later?",
-      answer: "Yes! You can upgrade or downgrade your plan at any time from your client area. Changes take effect immediately with no downtime.",
+      answer: "Absolutely! You can upgrade your hosting plan at any time through your client panel. Upgrades are processed instantly and you'll only pay the prorated difference.",
       icon: "fas fa-arrow-up"
     },
     {
-      question: "Do you provide technical support?",
-      answer: "Absolutely! Our expert support team is available 24/7 to help with any hosting-related questions or issues. We provide both technical and billing support.",
-      icon: "fas fa-headphones"
-    },
-    {
-      question: "What payment methods do you accept?",
-      answer: "We accept all major credit cards, PayPal, and various cryptocurrency payments. All transactions are processed securely through our encrypted payment system.",
-      icon: "fas fa-credit-card"
-    }
-  ],
-  
-  // Blog posts
-  blog: [
-    {
-      id: 1,
-      title: "Setting up Discord Bots with Pterodactyl Panel",
-      slug: "discord-bots-pterodactyl-setup", 
-      excerpt: "Complete guide to deploying and managing Discord bots using Pterodactyl panel with Node.js and Python environments.",
-      content: `# Setting up Discord Bots with Pterodactyl Panel
-
-## Prerequisites
-- Basic knowledge of Discord bot development
-- Node.js or Python bot code ready for deployment
-- Portix Host account with bot hosting plan
-
-## Step 1: Creating Your Server
-Navigate to your Portix Host control panel and create a new server instance...
-
-## Step 2: Uploading Your Bot Files
-Use SFTP or the web file manager to upload your bot files...
-
-## Step 3: Configuration
-Configure your environment variables and bot token...`,
-      author: "Portix Team",
-      date: "January 15, 2025",
-      category: "Tutorial",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "Web Hosting with Node.js Applications",
-      slug: "nodejs-web-hosting-guide",
-      excerpt: "Deploy and scale Node.js web applications with our comprehensive hosting guide covering Express.js, databases, and SSL.",
-      content: `# Node.js Web Hosting Guide
-
-Learn how to deploy production-ready Node.js applications...`,
-      author: "Portix Team",
-      date: "January 10, 2025", 
-      category: "Web Hosting",
-      featured: false
+      question: "What kind of support do you provide?", 
+      answer: "We provide 24/7 technical support through live chat and ticket system. Our experienced team can help with setup, troubleshooting, and optimization of your hosting environment.",
+      icon: "fas fa-headset"
     }
   ],
 
-  // Social links
-  social: {
-    discord: "#discord",
-    github: "#github", 
-    twitter: "#twitter"
-  },
-  
   // Footer
   footer: {
-    categories: [
+    logo: "/api/placeholder/40/40",
+    tagline: "Built for developers who demand power and simplicity.",
+    links: {
+      hosting: [
+        { name: "Discord Bot Hosting", href: "/discord-bot-hosting" },
+        { name: "Telegram Bot Hosting", href: "/telegram-bot-hosting" },
+        { name: "WordPress Hosting", href: "/wordpress-hosting" },
+        { name: "Shared Hosting", href: "/shared-hosting" },
+        { name: "Game Hosting", href: "/game-hosting" }
+      ],
+      support: [
+        { name: "Documentation", href: "/docs" },
+        { name: "Contact Us", href: "/contact" },
+        { name: "Status Page", href: "/status" },
+        { name: "Community", href: "/community" }
+      ],
+      legal: [
+        { name: "Terms of Service", href: "/terms" },
+        { name: "Privacy Policy", href: "/privacy" },
+        { name: "Cookie Policy", href: "/cookies" },
+        { name: "DMCA", href: "/dmca" }
+      ]
+    },
+    bottom: {
+      text: "Made with ❤️ by",
+      link: {
+        text: "Portix.online",
+        href: "https://portix.online"
+      }
+    }
+  },
+
+  // Docs Configuration
+  docs: {
+    title: "Documentation",
+    subtitle: "Everything you need to know about using Portix Host",
+    sections: [
       {
-        name: "Services",
-        icon: "fas fa-server",
-        links: [
-          { name: "Discord Bot Hosting", href: "/discord-bot-hosting", icon: "fab fa-discord" },
-          { name: "Telegram Bot Hosting", href: "/telegram-bot-hosting", icon: "fab fa-telegram" },
-          { name: "WordPress Hosting", href: "/wordpress-hosting", icon: "fab fa-wordpress" },
-          { name: "Shared Hosting", href: "/shared-hosting", icon: "fas fa-server" },
-          { name: "Game Hosting", href: "#game-hosting", icon: "fas fa-gamepad" }
+        title: "Getting Started",
+        icon: "fas fa-rocket",
+        articles: [
+          {
+            title: "Quick Start Guide",
+            description: "Get up and running in minutes",
+            href: "/docs/quick-start"
+          },
+          {
+            title: "Account Setup",
+            description: "Setting up your Portix Host account",
+            href: "/docs/account-setup"
+          },
+          {
+            title: "First Deployment", 
+            description: "Deploy your first project",
+            href: "/docs/first-deployment"
+          }
         ]
       },
       {
-        name: "Learn",
-        icon: "fas fa-graduation-cap",
-        links: [
-          { name: "FAQ", href: "/faq", icon: "fas fa-question-circle" },
-          { name: "About Us", href: "/about-us", icon: "fas fa-users" },
-          { name: "Blog", href: "/blog", icon: "fas fa-blog" }
+        title: "Bot Hosting",
+        icon: "fas fa-robot",
+        articles: [
+          {
+            title: "Discord Bot Setup",
+            description: "Host your Discord bot with ease",
+            href: "/docs/discord-setup"
+          },
+          {
+            title: "Telegram Bot Setup",
+            description: "Deploy Telegram bots quickly",
+            href: "/docs/telegram-setup"
+          },
+          {
+            title: "Bot Monitoring",
+            description: "Monitor your bot's performance",
+            href: "/docs/bot-monitoring"
+          }
         ]
       },
       {
-        name: "Legal",
-        icon: "fas fa-balance-scale",
-        links: [
-          { name: "Terms of Service", href: "#terms", icon: "fas fa-file-contract" },
-          { name: "Privacy Policy", href: "#privacy", icon: "fas fa-shield-alt" }
+        title: "Web Hosting",
+        icon: "fas fa-globe",
+        articles: [
+          {
+            title: "WordPress Installation",
+            description: "Install WordPress in one click",
+            href: "/docs/wordpress-install"
+          },
+          {
+            title: "Domain Configuration",
+            description: "Connect your custom domain",
+            href: "/docs/domain-config"
+          },
+          {
+            title: "SSL Certificates",
+            description: "Secure your site with SSL",
+            href: "/docs/ssl-setup"
+          }
         ]
       },
       {
-        name: "Connect", 
-        icon: "fas fa-share-alt",
-        links: [
-          { name: "Discord", href: "#discord", icon: "fab fa-discord" },
-          { name: "GitHub", href: "#github", icon: "fab fa-github" },
-          { name: "Twitter", href: "#twitter", icon: "fab fa-twitter" }
+        title: "Troubleshooting",
+        icon: "fas fa-tools",
+        articles: [
+          {
+            title: "Common Issues",
+            description: "Solutions to frequent problems",
+            href: "/docs/common-issues"
+          },
+          {
+            title: "Performance Optimization", 
+            description: "Optimize your hosting performance",
+            href: "/docs/optimization"
+          },
+          {
+            title: "Error Codes",
+            description: "Understanding error messages",
+            href: "/docs/error-codes"
+          }
         ]
       }
-    ],
-    copyright: "© 2025 Portix Host. All rights reserved.",
-    madeBy: "Made with ❤️ By Portix.online"
+    ]
+  },
+
+  // SEO Configuration
+  seo: {
+    defaultTitle: "Portix Host - Powerful Hosting for Bots, Websites, and Games",
+    defaultDescription: "Reliable and budget-friendly hosting solutions with 99.9% uptime. Host Discord bots, Telegram bots, websites, and game servers starting from $0.75/month.",
+    keywords: "hosting, discord bot hosting, telegram bot hosting, web hosting, game hosting, cheap hosting, reliable hosting",
+    ogImage: "/api/placeholder/1200/630"
   }
 };
