@@ -1,23 +1,24 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Share+Tech+Mono&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 :root {
-  --background: hsl(23, 84%, 1%);
+  --background: #060201;
   --foreground: hsl(0, 0%, 100%);
-  --muted: hsl(215, 27%, 14%);
+  --muted: #0F1014;
   --muted-foreground: hsl(218, 11%, 65%);
-  --popover: hsl(23, 84%, 1%);
+  --popover: #060201;
   --popover-foreground: hsl(0, 0%, 100%);
-  --card: hsl(216, 29%, 6%);
+  --card: #0F1014;
   --card-foreground: hsl(0, 0%, 100%);
   --border: hsl(217, 33%, 17%);
   --input: hsl(217, 33%, 17%);
-  --primary: hsl(201, 96%, 48%);
+  --primary: #060201;
   --primary-foreground: hsl(210, 40%, 98%);
-  --secondary: hsl(216, 29%, 6%);
+  --secondary: #0F1014;
   --secondary-foreground: hsl(0, 0%, 100%);
   --accent: hsl(201, 96%, 48%);
   --accent-foreground: hsl(210, 40%, 98%);
@@ -25,22 +26,23 @@
   --destructive-foreground: hsl(0, 0%, 98%);
   --ring: hsl(201, 96%, 48%);
   --radius: 0.5rem;
+  --custom: hsl(217, 33%, 17%);
 }
 
 .dark {
-  --background: hsl(23, 84%, 1%);
+  --background: #060201;
   --foreground: hsl(0, 0%, 100%);
-  --muted: hsl(215, 27%, 14%);
+  --muted: #0F1014;
   --muted-foreground: hsl(218, 11%, 65%);
-  --popover: hsl(23, 84%, 1%);
+  --popover: #060201;
   --popover-foreground: hsl(0, 0%, 100%);
-  --card: hsl(216, 29%, 6%);
+  --card: #0F1014;
   --card-foreground: hsl(0, 0%, 100%);
   --border: hsl(217, 33%, 17%);
   --input: hsl(217, 33%, 17%);
-  --primary: hsl(201, 96%, 48%);
+  --primary: #060201;
   --primary-foreground: hsl(210, 40%, 98%);
-  --secondary: hsl(216, 29%, 6%);
+  --secondary: #0F1014;
   --secondary-foreground: hsl(0, 0%, 100%);
   --accent: hsl(201, 96%, 48%);
   --accent-foreground: hsl(210, 40%, 98%);
@@ -48,6 +50,7 @@
   --destructive-foreground: hsl(0, 0%, 98%);
   --ring: hsl(201, 96%, 48%);
   --radius: 0.5rem;
+  --custom: hsl(217, 33%, 17%);
 }
 
 @layer base {
@@ -56,12 +59,37 @@
   }
 
   body {
-    @apply font-inter antialiased text-white;
+    @apply antialiased text-white;
     background-color: #060201;
+    font-family: 'Share Tech Mono', monospace;
   }
 
   html {
     @apply scroll-smooth;
+  }
+
+  /* Font families */
+  .font-orbitron {
+    font-family: 'Orbitron', monospace;
+  }
+
+  .font-tech-mono {
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+  /* Nav dropdown styling */
+  .nav-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .group:hover .nav-dropdown,
+  .nav-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
   /* Custom scrollbar */
@@ -90,8 +118,12 @@
 }
 
 @layer utilities {
-  .font-inter {
-    font-family: 'Inter', sans-serif;
+  .font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+  }
+  
+  .font-tech-mono {
+    font-family: 'Share Tech Mono', monospace;
   }
   
   .bg-primary {
