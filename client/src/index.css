@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --background: hsl(23, 84%, 1%);
+  --foreground: hsl(0, 0%, 100%);
+  --muted: hsl(215, 27%, 14%);
+  --muted-foreground: hsl(218, 11%, 65%);
+  --popover: hsl(23, 84%, 1%);
+  --popover-foreground: hsl(0, 0%, 100%);
+  --card: hsl(216, 29%, 6%);
+  --card-foreground: hsl(0, 0%, 100%);
+  --border: hsl(217, 33%, 17%);
+  --input: hsl(217, 33%, 17%);
+  --primary: hsl(201, 96%, 48%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(216, 29%, 6%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(201, 96%, 48%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 62%, 30%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(201, 96%, 48%);
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(23, 84%, 1%);
+  --foreground: hsl(0, 0%, 100%);
+  --muted: hsl(215, 27%, 14%);
+  --muted-foreground: hsl(218, 11%, 65%);
+  --popover: hsl(23, 84%, 1%);
+  --popover-foreground: hsl(0, 0%, 100%);
+  --card: hsl(216, 29%, 6%);
+  --card-foreground: hsl(0, 0%, 100%);
+  --border: hsl(217, 33%, 17%);
+  --input: hsl(217, 33%, 17%);
+  --primary: hsl(201, 96%, 48%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(216, 29%, 6%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(201, 96%, 48%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 62%, 30%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(201, 96%, 48%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-inter antialiased text-white;
+    background-color: #060201;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #060201;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #0195f4;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0284c7;
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #0195f4 #060201;
+  }
+}
+
+@layer utilities {
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .bg-primary {
+    background-color: #060201;
+  }
+  
+  .bg-secondary {
+    background-color: #0F1014;
+  }
+  
+  .bg-accent {
+    background-color: #0195f4;
+  }
+  
+  .text-secondary {
+    color: #a1a1aa;
+  }
+  
+  .border-custom {
+    border-color: #27272a;
+  }
+  
+  .nav-dropdown {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+  }
+  
+  .nav-dropdown.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  
+  .mobile-menu {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .mobile-menu.show {
+    transform: translateX(0);
+  }
+}
