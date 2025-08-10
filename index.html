@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portix Host - Powerful Hosting</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Orbitron and JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons (as SVGs) and Font Awesome will be used via SVG or classes -->
+    <!-- Custom CSS for animations and fonts -->
+    <style>
+        :root {
+            --primary: #121826;
+            --secondary: #6B7280;
+            --accent: #3B82F6;
+            --custom: #2D3748;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: var(--primary);
+            color: white;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+        }
+
+        /* Custom animation keyframes */
+        @keyframes levitate {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.02); }
+            100% { transform: translateY(0) scale(1); }
+        }
+        .animate-levitate {
+            animation: levitate 4s ease-in-out infinite;
+        }
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 3s ease-in-out infinite;
+        }
+
+        /* Magic Spell Effect Animations */
+        @keyframes sparkle-pink {
+            0%, 100% {
+                transform: translate(0, 0) scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(25px, -20px) scale(1.5);
+                opacity: 1;
+            }
+        }
+        @keyframes sparkle-purple {
+            0%, 100% {
+                transform: translate(0, 0) scale(0.9);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-30px, 15px) scale(1.3);
+                opacity: 1;
+            }
+        }
+        @keyframes sparkle-white {
+            0%, 100% {
+                transform: translate(0, 0) scale(0.7);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(15px, 30px) scale(1.4);
+                opacity: 1;
+            }
+        }
+        @keyframes sparkle-fade {
+            0%, 100% {
+                transform: translate(0, 0) scale(0.6);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-25px, -10px) scale(1.2);
+                opacity: 1;
+            }
+        }
+        .magic-effect-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+        .magic-effect-wrapper::before,
+        .magic-effect-wrapper::after,
+        .magic-effect-wrapper > .sparkle-1,
+        .magic-effect-wrapper > .sparkle-2,
+        .magic-effect-wrapper > .sparkle-3,
+        .magic-effect-wrapper > .sparkle-4,
+        .magic-effect-wrapper > .sparkle-5,
+        .magic-effect-wrapper > .sparkle-6 {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        .magic-effect-wrapper > .sparkle-1 {
+            width: 10px; height: 10px; top: 10%; left: 20%; background-color: #ff69b4; animation: sparkle-pink 3s ease-in-out infinite;
+        }
+        .magic-effect-wrapper > .sparkle-2 {
+            width: 12px; height: 12px; bottom: 25%; right: 15%; background-color: #9333ea; animation: sparkle-purple 4s ease-in-out infinite 0.5s;
+        }
+        .magic-effect-wrapper > .sparkle-3 {
+            width: 8px; height: 8px; top: 40%; right: 5%; background-color: #ffffff; animation: sparkle-fade 3.2s ease-in-out infinite 0.8s;
+        }
+        .magic-effect-wrapper > .sparkle-4 {
+            width: 9px; height: 9px; bottom: 50%; left: 5%; background-color: #9333ea; animation: sparkle-purple 3.5s ease-in-out infinite 1.2s;
+        }
+        .magic-effect-wrapper > .sparkle-5 {
+            width: 11px; height: 11px; top: 25%; right: 30%; background-color: #ffffff; animation: sparkle-white 3.8s ease-in-out infinite 1.5s;
+        }
+        .magic-effect-wrapper > .sparkle-6 {
+            width: 7px; height: 7px; bottom: 10%; left: 45%; background-color: #ff69b4; animation: sparkle-pink 4s ease-in-out infinite 2s;
+        }
+
+        /* SVG icons */
+        .icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+    </style>
+</head>
+<body class="bg-[var(--primary)] text-white">
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center overflow-hidden" data-testid="hero-section">
+        <div class="absolute inset-0 bg-gradient-to-br from-[var(--primary)] via-[var(--primary)]/90 to-[var(--secondary)]/20"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Side - Content -->
+                <div class="max-w-2xl">
+                    <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 leading-tight font-orbitron" data-testid="hero-title">
+                        Powerful Hosting for
+                        <span class="text-[var(--accent)]">Bots</span>,
+                        <span class="text-[var(--accent)]">Websites</span>, and
+                        <span class="text-[var(--accent)]">Games</span>
+                    </h1>
+                    <p class="text-xl lg:text-2xl text-[var(--secondary)] mb-12 leading-relaxed font-jetbrains-mono" data-testid="hero-subtitle">
+                        Experience unmatched performance and reliability. Get your projects online with ease and confidence.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        <button class="bg-[var(--accent)] hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-jetbrains-mono font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-[var(--accent)]/20" data-testid="button-get-started">
+                            Get Started
+                        </button>
+                        <button class="border-2 border-[var(--custom)] hover:bg-[var(--secondary)] text-white px-8 py-4 rounded-xl font-jetbrains-mono font-medium transition-all duration-300" data-testid="button-learn-more">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <!-- Right Side - Illustration -->
+                <div class="relative">
+                    <div class="w-full max-w-sm mx-auto">
+                        <div class="relative p-8 bg-[var(--secondary)]/20 backdrop-blur-sm rounded-3xl">
+                            <img src="https://raw.githubusercontent.com/portix1337/assets/main/y_portix.png" alt="Discord Hosting Illustration" class="w-full h-auto rounded-2xl shadow-2xl animate-levitate" data-testid="hero-image" onerror="this.onerror=null;this.src='https://placehold.co/400x400/121826/6B7280?text=Illustration';" />
+                            <!-- 4-point SVG Star -->
+                            <div class="absolute right-[-2rem] top-[5%] text-white animate-pulse-slow">
+                                <svg class="w-12 h-12 fill-current" viewBox="0 0 24 24">
+                                    <path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2z" />
+                                </svg>
+                            </div>
+                            <div class="absolute -top-4 -right-4 w-24 h-24 bg-[var(--accent)]/20 rounded-full blur-xl"></div>
+                            <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/20 rounded-full blur-xl"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Provide Section -->
+    <section id="services" class="py-24 lg:py-32 bg-[var(--secondary)]" data-testid="services-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center space-x-2 mb-6 bg-[var(--accent)] px-4 py-2 rounded-xl">
+                    <span class="text-white font-jetbrains-mono font-medium uppercase tracking-wider">Services</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-orbitron" data-testid="services-title">
+                    What We <span class="text-[var(--accent)]">Provide</span>
+                </h2>
+                <p class="text-[var(--secondary)] text-xl max-w-3xl mx-auto leading-relaxed font-jetbrains-mono" data-testid="services-subtitle">
+                    Choose from our comprehensive hosting solutions designed for developers, businesses, and gaming communities.
+                </p>
+            </div>
+            <div id="services-grid" class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Services will be populated here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 lg:py-32 bg-[var(--primary)]" data-testid="features-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center space-x-2 mb-6 bg-[var(--accent)] px-4 py-2 rounded-xl">
+                    <span class="text-white font-jetbrains-mono font-medium uppercase tracking-wider">Features</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-orbitron" data-testid="features-title">
+                    Our <span class="text-[var(--accent)]">Features</span>
+                </h2>
+                <p class="text-[var(--secondary)] text-xl max-w-3xl mx-auto leading-relaxed font-jetbrains-mono" data-testid="features-subtitle">
+                    Everything you need to run your projects with confidence and peace of mind.
+                </p>
+            </div>
+            <div id="features-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Features will be populated here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Portix Host Section -->
+    <section id="why" class="py-24 lg:py-32 bg-[var(--secondary)]" data-testid="why-section">
+        <div class="container mx-auto px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center space-x-2 mb-6 bg-[var(--accent)] px-4 py-2 rounded-xl">
+                        <span class="text-white font-jetbrains-mono font-medium uppercase tracking-wider">Why Choose Us</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-orbitron" data-testid="why-title">
+                        Why Portix <span class="text-[var(--accent)]">Host</span>?
+                    </h2>
+                    <p class="text-[var(--secondary)] text-xl max-w-3xl mx-auto leading-relaxed font-jetbrains-mono" data-testid="why-subtitle">
+                        Join thousands of developers and businesses who trust us with their hosting needs.
+                    </p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <!-- Left column - Image with new magic effect -->
+                    <div class="order-2 lg:order-1 flex justify-center relative">
+                        <div class="magic-effect-wrapper">
+                            <img
+                                src="https://raw.githubusercontent.com/portix1337/assets/main/y_portix.png"
+                                alt="Server Infrastructure Illustration"
+                                class="h-80 max-w-80"
+                                data-testid="why-illustration-image"
+                                onerror="this.onerror=null;this.src='https://placehold.co/400x400/121826/6B7280?text=Illustration';"
+                            />
+                            <div class="sparkle-1"></div>
+                            <div class="sparkle-2"></div>
+                            <div class="sparkle-3"></div>
+                            <div class="sparkle-4"></div>
+                            <div class="sparkle-5"></div>
+                            <div class="sparkle-6"></div>
+                        </div>
+                    </div>
+                    <!-- Right column - Features list -->
+                    <div id="why-features-list" class="order-1 lg:order-2 space-y-8">
+                        <!-- Why features will be populated here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 lg:py-32 bg-[var(--primary)]" data-testid="testimonials-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center space-x-2 mb-6 bg-[var(--accent)] px-4 py-2 rounded-xl">
+                    <span class="text-white text-2xl">⭐</span>
+                    <span class="text-white font-jetbrains-mono font-medium uppercase tracking-wider">Testimonials</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-orbitron" data-testid="testimonials-title">
+                    What Our Customers Say
+                </h2>
+                <p class="text-[var(--secondary)] text-xl max-w-3xl mx-auto leading-relaxed font-jetbrains-mono" data-testid="testimonials-subtitle">
+                    Join thousands of satisfied customers who trust Portix Host for their hosting needs.
+                </p>
+            </div>
+            <!-- Testimonial Slider -->
+            <div class="max-w-4xl mx-auto">
+                <div class="relative bg-[var(--secondary)]/50 backdrop-blur-sm rounded-3xl p-12 border border-[var(--custom)]/50 shadow-2xl">
+                    <!-- Navigation Arrows -->
+                    <button id="testimonial-prev" class="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[var(--accent)]/10 hover:bg-[var(--accent)]/20 rounded-full flex items-center justify-center transition-colors" data-testid="testimonial-prev">
+                        <svg class="icon text-[var(--accent)]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                    </button>
+                    <button id="testimonial-next" class="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-[var(--accent)]/10 hover:bg-[var(--accent)]/20 rounded-full flex items-center justify-center transition-colors" data-testid="testimonial-next">
+                        <svg class="icon text-[var(--accent)]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </button>
+                    <!-- Testimonial Content -->
+                    <div id="testimonial-content" class="text-center px-16">
+                        <!-- Content will be populated by JS -->
+                    </div>
+                    <!-- Testimonial Indicators -->
+                    <div id="testimonial-indicators" class="flex justify-center mt-8 space-x-2">
+                        <!-- Indicators will be populated by JS -->
+                    </div>
+                </div>
+                <!-- Trustpilot Button -->
+                <div class="text-center mt-12">
+                    <button class="bg-[var(--accent)] hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-jetbrains-mono font-medium transition-colors shadow-lg">
+                        Read more reviews on Trustpilot
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 lg:py-32 bg-[var(--secondary)]" data-testid="faq-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center space-x-2 mb-6 bg-[var(--accent)] px-4 py-2 rounded-xl">
+                    <span class="text-white text-2xl">❓</span>
+                    <span class="text-white font-jetbrains-mono font-medium uppercase tracking-wider">FAQ</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-orbitron" data-testid="faq-title">
+                    Frequently Asked Questions
+                </h2>
+                <p class="text-[var(--secondary)] text-xl max-w-3xl mx-auto leading-relaxed font-jetbrains-mono" data-testid="faq-subtitle">
+                    Get answers to common questions about our hosting services and support.
+                </p>
+            </div>
+            <div id="faq-list" class="max-w-4xl mx-auto space-y-6">
+                <!-- FAQ items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // === Data Configuration ===
+            const siteConfig = {
+                hero: {
+                    subtitle: "Experience unmatched performance and reliability. Get your projects online with ease and confidence.",
+                    image: "https://raw.githubusercontent.com/portix1337/assets/main/y_portix.png",
+                    ctaButtons: {
+                        primary: "Get Started",
+                        secondary: "Learn More"
+                    }
+                },
+                services: [
+                    { id: 'web', name: 'Web Hosting', description: 'Blazing-fast SSD hosting for your personal or business website.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L9.44 10.94a5 5 0 0 0 0 7.07Z"/><path d="M4 4l7.07 7.07"/><path d="M17 17l-7.07-7.07"/><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L9.44 10.94a5 5 0 0 0 0 7.07Z"/></svg>` },
+                    { id: 'bot', name: 'Bot Hosting', description: 'Reliable, low-latency hosting for Discord bots and other applications.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v5a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5Z"/><path d="M21 16a9 9 0 0 0-18 0"/><path d="M12 22a2 2 0 0 1-2-2h4a2 2 0 0 1-2 2Z"/></svg>` },
+                    { id: 'game', name: 'Game Hosting', description: 'High-performance servers for multiplayer games with minimal lag.', icon: `<svg xmlns="http://www.w3.org/2000/svg" class="icon text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-2.76 0-5 2.24-5 5v5a5 5 0 0 0 10 0V7c0-2.76-2.24-5-5-5Z"/><path d="M12 22v-4"/><path d="M12 22a2 2 0 0 1-2-2h4a2 2 0 0 1-2 2Z"/><path d="M12 18h1a3 3 0 0 0 0-6H12a3 3 0 0 0 0-6h1"/><path d="M12 18a3 3 0 0 1-3 3v0"/><path d="M12 18a3 3 0 0 0 3 3v0"/><path d="M12 18h-1a3 3 0 0 1 0-6h1a3 3 0 0 1 0-6h-1"/></svg>` },
+                ],
+                features: [
+                    { name: 'Fast Performance', description: 'Lightning-fast NVMe SSDs and powerful CPUs for optimal performance.', icon: 'zap' },
+                    { name: '24/7 Support', description: 'Our dedicated support team is here to help you around the clock.', icon: 'headphones' },
+                    { name: 'DDoS Protection', description: 'Advanced protection keeps your projects safe from malicious attacks.', icon: 'shield' },
+                    { name: 'Global Network', description: 'Choose from a wide range of global locations for lower latency.', icon: 'server' },
+                    { name: 'Secure & Private', description: 'Your data is safe with us, thanks to our robust security measures.', icon: 'lock' },
+                    { name: 'Developer Friendly', description: 'Easy-to-use control panel and API access for seamless integration.', icon: 'check' },
+                ],
+                testimonials: [
+                    { text: 'Portix Host has been a game-changer for my online business. The performance is incredible and the support is top-notch!', name: 'Alex Johnson', role: 'Founder, TechSolutions', rating: 5, avatar: 'https://placehold.co/100x100/3B82F6/ffffff?text=AJ' },
+                    { text: 'I moved my Discord bot to Portix Host and the difference is night and day. Zero downtime and super fast response times!', name: 'Maria Rodriguez', role: 'Bot Developer', rating: 5, avatar: 'https://placehold.co/100x100/6B7280/ffffff?text=MR' },
+                    { text: 'The ease of use and affordable pricing are what sold me. I was able to get my website up and running in minutes.', name: 'Chris Evans', role: 'Freelance Designer', rating: 4, avatar: 'https://placehold.co/100x100/2D3748/ffffff?text=CE' }
+                ],
+                faqs: [
+                    { question: 'What payment methods do you accept?', answer: 'We accept a variety of payment methods including credit cards, PayPal, and cryptocurrency for your convenience.' },
+                    { question: 'Do you offer a money-back guarantee?', answer: 'Yes, we offer a 30-day money-back guarantee on all our hosting plans. If you are not satisfied, we\'ll refund your payment.' },
+                    { question: 'Is it easy to migrate my existing project?', answer: 'Absolutely! Our support team can assist you with the migration process, ensuring a smooth and hassle-free transition with zero downtime.' }
+                ]
+            };
+
+            // === Icon Mappings (as SVGs) ===
+            const iconMap = {
+                check: `<svg xmlns="http://www.w3.org/2000/svg" class="icon w-6 h-6 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+                zap: `<svg xmlns="http://www.w3.org/2000/svg" class="icon w-6 h-6 text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8Z"/></svg>`,
+                headphones: `<svg xmlns="http://www.w3.org/2000/svg" class="icon w-6 h-6 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M20 18H4v-6a9 9 0 0 1 9-9h2c4.56 0 7 2.44 7 7v2z"/><path d="M12 18v4a2 2 0 0 1-2 2h4a2 2 0 0 1-2-2v-4"/></svg>`,
+                shield: `<svg xmlns="http://www.w3.org/2000/svg" class="icon w-6 h-6 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 5v6c0 5.55 3.84 10.74 9 12a16.27 16.27 0 0 0 9-12V5l-8-3Z"/></svg>`,
+                server: `<svg xmlns="http://www.w3.org/2000/svg" class="icon w-6 h-6 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
+                lock: `<svg xmlns="http://www.w3.org/2000/svg" class="icon w-6 h-6 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+            };
+
+            const serviceIconColors = [
+                'text-blue-500',
+                'text-purple-500',
+                'text-yellow-500',
+            ];
+
+            // === Functions to render dynamic sections ===
+            function renderServices() {
+                const container = document.getElementById('services-grid');
+                container.innerHTML = siteConfig.services.map((service, index) => `
+                    <div class="bg-[var(--primary)]/50 backdrop-blur-sm rounded-2xl p-10 text-center border border-[var(--custom)]/50 hover:border-[var(--accent)]/50 hover:bg-[var(--primary)]/70 transition-all duration-300 group transform hover:scale-105 hover:shadow-2xl" data-testid="service-card-${service.id}">
+                        <div class="w-20 h-20 bg-[var(--accent)]/10 rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-[var(--accent)]/20 group-hover:scale-110 transition-all duration-300">
+                            ${service.icon}
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-6 font-orbitron text-white group-hover:text-[var(--accent)] transition-colors duration-300" data-testid="service-name-${service.id}">
+                            ${service.name}
+                        </h3>
+                        <p class="text-[var(--secondary)] leading-relaxed text-lg font-jetbrains-mono" data-testid="service-description-${service.id}">
+                            ${service.description}
+                        </p>
+                    </div>
+                `).join('');
+            }
+
+            function renderFeatures() {
+                const container = document.getElementById('features-grid');
+                container.innerHTML = siteConfig.features.map((feature, index) => `
+                    <div class="bg-[var(--secondary)]/50 backdrop-blur-sm rounded-2xl p-8 border border-[var(--custom)]/50 hover:border-[var(--accent)]/50 hover:bg-[var(--secondary)]/70 transition-all duration-300 group flex flex-col items-center text-center transform hover:scale-105 hover:shadow-xl" data-testid="feature-card-${index}">
+                        <div class="w-16 h-16 rounded-full bg-[var(--accent)]/10 flex items-center justify-center mb-6 group-hover:bg-[var(--accent)]/20 transition-colors">
+                            ${iconMap[feature.icon]}
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 font-orbitron" data-testid="feature-title-${index}">
+                            ${feature.name}
+                        </h4>
+                        <p class="text-[var(--secondary)] leading-relaxed font-jetbrains-mono" data-testid="feature-description-${index}">
+                            ${feature.description}
+                        </p>
+                    </div>
+                `).join('');
+            }
+
+            function renderWhyFeatures() {
+                const container = document.getElementById('why-features-list');
+                container.innerHTML = `
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-6 p-6 bg-[var(--primary)]/30 rounded-2xl border border-[var(--custom)]/30 hover:border-[var(--accent)]/30 transition-colors" data-testid="why-feature-0">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                ${iconMap.check}
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-3 font-orbitron" data-testid="why-feature-title-0">Budget-Friendly Pricing</h4>
+                                <p class="text-[var(--secondary)] text-lg leading-relaxed font-jetbrains-mono" data-testid="why-feature-description-0">Premium hosting solutions at prices that won't break the bank. Starting from just $0.75/month.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-6 p-6 bg-[var(--primary)]/30 rounded-2xl border border-[var(--custom)]/30 hover:border-[var(--accent)]/30 transition-colors" data-testid="why-feature-1">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                ${iconMap.check}
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-3 font-orbitron" data-testid="why-feature-title-1">Lightning-Fast Performance</h4>
+                                <p class="text-[var(--secondary)] text-lg leading-relaxed font-jetbrains-mono" data-testid="why-feature-description-1">NVMe SSD storage and optimized infrastructure ensure your applications load faster than ever.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-6 p-6 bg-[var(--primary)]/30 rounded-2xl border border-[var(--custom)]/30 hover:border-[var(--accent)]/30 transition-colors" data-testid="why-feature-2">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                ${iconMap.check}
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-3 font-orbitron" data-testid="why-feature-title-2">Developer-Focused</h4>
+                                <p class="text-[var(--secondary)] text-lg leading-relaxed font-jetbrains-mono" data-testid="why-feature-description-2">Built by developers, for developers. Advanced tools and APIs to streamline your workflow.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-6 p-6 bg-[var(--primary)]/30 rounded-2xl border border-[var(--custom)]/30 hover:border-[var(--accent)]/30 transition-colors" data-testid="why-feature-3">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                ${iconMap.check}
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-3 font-orbitron" data-testid="why-feature-title-3">Scalable Solutions</h4>
+                                <p class="text-[var(--secondary)] text-lg leading-relaxed font-jetbrains-mono" data-testid="why-feature-description-3">Start small and scale up as you grow. Seamless upgrades with zero downtime migrations.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // === Testimonial Slider Logic ===
+            let currentTestimonial = 0;
+            const testimonials = siteConfig.testimonials;
+            const testimonialContent = document.getElementById('testimonial-content');
+            const prevButton = document.getElementById('testimonial-prev');
+            const nextButton = document.getElementById('testimonial-next');
+            const indicatorsContainer = document.getElementById('testimonial-indicators');
+
+            function renderStars(rating) {
+                let stars = '';
+                for (let i = 0; i < rating; i++) {
+                    stars += `<svg class="w-6 h-6 text-yellow-400 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+                }
+                return `<div class="flex justify-center mb-6">${stars}</div>`;
+            }
+
+            function renderTestimonial() {
+                const testimonial = testimonials[currentTestimonial];
+                testimonialContent.innerHTML = `
+                    ${renderStars(testimonial.rating)}
+                    <blockquote class="text-xl lg:text-2xl text-white mb-8 leading-relaxed font-jetbrains-mono" data-testid="testimonial-text-${currentTestimonial}">
+                        "${testimonial.text}"
+                    </blockquote>
+                    <div class="flex items-center justify-center space-x-4">
+                        <img src="${testimonial.avatar}" alt="${testimonial.name}" class="w-16 h-16 rounded-full border-2 border-[var(--accent)]" data-testid="testimonial-avatar-${currentTestimonial}"/>
+                        <div class="text-left">
+                            <div class="font-bold text-lg font-orbitron" data-testid="testimonial-name-${currentTestimonial}">
+                                ${testimonial.name}
+                            </div>
+                            <div class="text-[var(--secondary)] font-jetbrains-mono" data-testid="testimonial-role-${currentTestimonial}">
+                                ${testimonial.role}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                updateIndicators();
+            }
+
+            function updateIndicators() {
+                indicatorsContainer.innerHTML = testimonials.map((_, index) => `
+                    <button class="w-3 h-3 rounded-full transition-colors ${index === currentTestimonial ? 'bg-[var(--accent)]' : 'bg-[var(--custom)]'}" data-index="${index}"></button>
+                `).join('');
+
+                document.querySelectorAll('#testimonial-indicators button').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        currentTestimonial = parseInt(e.target.dataset.index, 10);
+                        renderTestimonial();
+                    });
+                });
+            }
+
+            prevButton.addEventListener('click', () => {
+                currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+                renderTestimonial();
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                renderTestimonial();
+            });
+
+            // === FAQ Accordion Logic ===
+            function renderFAQs() {
+                const container = document.getElementById('faq-list');
+                container.innerHTML = siteConfig.faqs.map((faq, index) => `
+                    <div class="faq-item bg-[var(--primary)]/50 backdrop-blur-sm rounded-2xl p-6 border border-[var(--custom)]/50 cursor-pointer" data-testid="faq-item-${index}">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-lg font-bold font-orbitron" data-testid="faq-question-${index}">${faq.question}</h4>
+                            <svg class="w-6 h-6 text-[var(--accent)] transform transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m6 9 6 6 6-6"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer hidden mt-4 text-[var(--secondary)] leading-relaxed font-jetbrains-mono" data-testid="faq-answer-${index}">
+                            ${faq.answer}
+                        </div>
+                    </div>
+                `).join('');
+
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const answer = item.querySelector('.faq-answer');
+                        const icon = item.querySelector('svg');
+
+                        // Close all other open FAQs
+                        document.querySelectorAll('.faq-item').forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove('active');
+                                otherItem.querySelector('.faq-answer').classList.add('hidden');
+                                otherItem.querySelector('svg').style.transform = 'rotate(0deg)';
+                            }
+                        });
+
+                        // Toggle the clicked FAQ
+                        item.classList.toggle('active');
+                        answer.classList.toggle('hidden');
+                        icon.style.transform = item.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+                    });
+                });
+            }
+
+            // Initial render calls
+            renderServices();
+            renderFeatures();
+            renderWhyFeatures();
+            renderTestimonial();
+            renderFAQs();
+
+        });
+    </script>
+</body>
+</html>

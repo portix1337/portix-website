@@ -5,7 +5,8 @@ export const siteConfig = {
       first: "Portix", // White text
       second: "Host"   // Blue text (#0195f4)
     },
-    logo: "/api/placeholder/40/40",
+    logo: "https://raw.githubusercontent.com/portix1337/assets/main/logo.png",
+
     tagline: "Built for developers who demand power and simplicity."
   },
 
@@ -37,15 +38,15 @@ export const siteConfig = {
   
   // Discount banner
   discountBanner: {
-    enabled: true,
-    text: "🎉 Limited Time: Get 50% off your first month! Use code: WELCOME50"
+    enabled: false,
+    text: "🚀 Portix Host — Coming Soon! Launching soon with unbeatable deals!"
   },
   
   // Hero section
   hero: {
     title: "Powerful Hosting for Bots, Websites, and Games",
     subtitle: "Portix Host delivers reliable and budget-friendly hosting solutions with unmatched uptime.",
-    image: "/api/placeholder/600/400", // Discord illustration with edge dark effect
+image: "https://raw.githubusercontent.com/portix1337/assets/main/hero.png",
     ctaButtons: {
       primary: "Get Started",
       secondary: "Learn More"
@@ -55,7 +56,7 @@ export const siteConfig = {
   // Section tags (with icons instead of emojis)
   sectionTags: {
     services: {
-      icon: "fas fa-star",
+      icon: "fas fa-rocket",
       text: "What We Offer"
     },
     features: {
@@ -67,11 +68,11 @@ export const siteConfig = {
       text: "Why Choose Us"
     },
     testimonials: {
-      icon: "fas fa-comments",
+      icon: "fas fa-rocket",
       text: "Customer Love"
     },
     faq: {
-      icon: "fas fa-question-circle",
+      icon: "fas fa-rocket",
       text: "Got Questions?"
     }
   },
@@ -143,7 +144,7 @@ export const siteConfig = {
         },
         {
           name: "Billing",
-          href: "#billing", 
+          href: "billing.portix.online", 
           icon: "fas fa-credit-card"
         },
         {
@@ -411,15 +412,13 @@ export const siteConfig = {
 
   // Footer
   footer: {
-    logo: "/api/placeholder/40/40",
+    logo: "https://raw.githubusercontent.com/portix1337/assets/main/logo.png",
     tagline: "Built for developers who demand power and simplicity.",
     links: {
       hosting: [
         { name: "Discord Bot Hosting", href: "/discord-bot-hosting" },
         { name: "Telegram Bot Hosting", href: "/telegram-bot-hosting" },
-        { name: "WordPress Hosting", href: "/wordpress-hosting" },
-        { name: "Shared Hosting", href: "/shared-hosting" },
-        { name: "Game Hosting", href: "/game-hosting" }
+      
       ],
       support: [
         { name: "Documentation", href: "/docs" },

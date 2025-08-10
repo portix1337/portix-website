@@ -1,90 +1,119 @@
-import { MessageCircle, Zap, Shield, Globe, Code, Users } from "lucide-react";
-import PricingCard from "@/components/PricingCard";
-import FeatureCard from "@/components/FeatureCard";
-import FAQItem from "@/components/FAQItem";
+import React, { useState, useRef } from 'react';
+
+// Mock PricingCard component to make the example runnable
+const PricingCard = ({ title, price, duration, features, isPopular, buttonText, onOrderClick }) => {
+  return (
+    <div className={`relative bg-surface rounded-3xl shadow-xl p-8 transform transition-all duration-300 hover:scale-105 ${isPopular ? 'border-4 border-accent' : ''}`}>
+      {isPopular && (
+        <span className="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-4 py-1 rounded-bl-xl rounded-tr-3xl uppercase">
+          Most Popular
+        </span>
+      )}
+      <h3 className="text-2xl font-bold font-orbitron mb-4 text-white">{title}</h3>
+      <p className="text-5xl font-bold font-orbitron mb-2 text-accent">{price}</p>
+      <p className="text-secondary mb-8">{duration}</p>
+      <ul className="space-y-3 mb-8">
+        {features.map((feature, index) => (
+          <li key={index} className="flex items-center space-x-3 text-secondary">
+            <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+      {/* The button now uses the onOrderClick prop */}
+      <button
+        onClick={onOrderClick}
+        className="w-full bg-accent hover:bg-blue-600 text-white font-tech-mono font-medium py-4 rounded-xl transition-all duration-300 transform hover:scale-105"
+      >
+        {buttonText}
+      </button>
+    </div>
+  );
+};
+
+// Collapsible FAQItem component
+const FAQItem = ({ question, answer }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="bg-surface rounded-2xl shadow-md overflow-hidden">
+      <button
+        className="flex justify-between items-center w-full p-6 text-left text-white"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <h3 className="font-bold text-lg">{question}</h3>
+        <svg
+          className={`h-6 w-6 transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div
+        className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-96' : 'max-h-0'}`}
+        style={{ transitionProperty: 'max-height' }}
+      >
+        {isOpen && (
+          <p className="px-6 pb-6 text-secondary">{answer}</p>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default function TelegramBotHosting() {
-  const features = [
-    {
-      icon: <MessageCircle className="w-8 h-8" />,
-      title: "Telegram Bot API",
-      description: "Full support for Telegram Bot API with webhook and long polling methods for reliable message handling."
-    },
-    {
-      icon: <Zap className="w-8 h-8" />,
-      title: "Lightning Fast",
-      description: "Ultra-low latency hosting ensures your Telegram bots respond instantly to user messages."
-    },
-    {
-      icon: <Shield className="w-8 h-8" />,
-      title: "Secure Hosting",
-      description: "Enterprise-grade security with encrypted token storage and secure webhook endpoints."
-    },
-    {
-      icon: <Code className="w-8 h-8" />,
-      title: "Multi-Framework",
-      description: "Support for Python-telegram-bot, node-telegram-bot-api, Telegraf, and more popular frameworks."
-    },
-    {
-      icon: <Globe className="w-8 h-8" />,
-      title: "Global CDN",
-      description: "Deploy your bots across multiple regions for optimal performance worldwide."
-    },
-    {
-      icon: <Users className="w-8 h-8" />,
-      title: "Scalable",
-      description: "Auto-scaling infrastructure handles millions of messages without breaking a sweat."
-    }
-  ];
+  const pricingRef = useRef(null);
 
   const plans = [
     {
-      title: "Basic Bot",
-      price: "$3.99",
+      title: "Starter Plan",
+      price: "$0.99",
       duration: "month",
       features: [
-        "1 Telegram Bot",
         "512MB RAM",
-        "10K messages/month",
+        "24/7 Uptime",
         "1GB Storage",
-        "Basic Support",
-        "Webhook support"
+        "Unmetered Bandwith",
+        "1 Database",
+        "1 Included Backups",
       ],
-      buttonText: "Start Free Trial"
+      buttonText: "Order Now",
+      checkoutUrl: "https://billing.portix.online/products/telegram-bot/telegram-bot"
     },
     {
-      title: "Pro Bot",
-      price: "$9.99",
+      title: "Standard Plan",
+      price: "$1.99",
       duration: "month",
       features: [
-        "5 Telegram Bots",
-        "2GB RAM",
-        "100K messages/month",
-        "10GB Storage",
-        "Priority Support",
-        "Custom domains",
-        "Database hosting",
-        "Analytics dashboard"
+        "1GB RAM",
+        "24/7 Uptime",
+        "1GB Storage",
+        "Unmetered Bandwith",
+        "2 Database",
+        "2 Included Backups",
       ],
       isPopular: true,
-      buttonText: "Start Free Trial"
+      buttonText: "Order Now",
+      checkoutUrl: "https://billing.portix.online/products/telegram-bot/standard-plan"
     },
     {
-      title: "Enterprise Bot",
-      price: "$24.99",
+      title: "Advanced Plan",
+      price: "$2.99",
       duration: "month",
       features: [
-        "Unlimited Bots",
-        "8GB RAM",
-        "Unlimited messages",
-        "100GB Storage",
-        "24/7 Phone Support",
-        "White-label hosting",
-        "Advanced monitoring",
-        "API access",
-        "Custom integrations"
+        "2GB RAM",
+        "24/7 Uptime",
+        "3GB Storage",
+        "Unmetered Bandwith",
+        "3 Database",
+        "3 Included Backups",
       ],
-      buttonText: "Contact Sales"
+      buttonText: "Order Now",
+      checkoutUrl: "https://billing.portix.online/products/telegram-bot/advanced-plan"
     }
   ];
 
@@ -95,7 +124,7 @@ export default function TelegramBotHosting() {
     },
     {
       question: "What programming languages are supported?",
-      answer: "We support Python (python-telegram-bot), Node.js (telegraf, node-telegram-bot-api), PHP, Go, Java, and more. Our platform automatically detects and configures the environment."
+      answer: "We support Python (python-telegram-bot), Node.js (telegraf, node-telegram-bot-api), PHP, Go, Java, and more."
     },
     {
       question: "How do webhooks work with your hosting?",
@@ -103,20 +132,50 @@ export default function TelegramBotHosting() {
     },
     {
       question: "Can I handle high-volume Telegram bots?",
-      answer: "Absolutely! Our infrastructure auto-scales to handle millions of messages. We've hosted bots serving 500K+ users with sub-second response times."
+      answer: "Absolutely! Our infrastructure auto-scales to handle Thousands of messages. We've hosted bots serving 100k+ users with sub-second response times."
     },
-    {
-      question: "Do you provide analytics for my Telegram bot?",
-      answer: "Yes! Our Pro and Enterprise plans include detailed analytics showing message volumes, user engagement, response times, and error rates with beautiful dashboards."
-    },
-    {
-      question: "What about data storage for my bot?",
-      answer: "We provide PostgreSQL, MySQL, and Redis databases. Your bot data is automatically backed up daily and can be accessed securely from your hosted application."
-    }
   ];
+
+  // Function to handle the redirection for ordering a plan
+  const handleOrderClick = (url) => {
+    window.location.href = url;
+  };
+
+  // Function to scroll to the pricing section
+  const scrollToPricing = () => {
+    pricingRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // Function to handle the documentation link
+  const goToDocs = () => {
+    window.location.href = "https://docs.portix.online";
+  };
 
   return (
     <div className="min-h-screen bg-primary">
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Mono:wght@400;700&display=swap');
+        @keyframes fade-and-float {
+          0% {
+            opacity: 0;
+            transform: translateY(20px) scale(0.5);
+          }
+          50% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.5);
+          }
+        }
+        .font-orbitron {
+          font-family: 'Orbitron', sans-serif;
+        }
+        .font-tech-mono {
+          font-family: 'Space Mono', monospace;
+        }
+      `}</style>
       {/* Hero Section */}
       <section className="py-24 lg:py-32" data-testid="telegram-hero">
         <div className="container mx-auto px-4">
@@ -135,60 +194,30 @@ export default function TelegramBotHosting() {
                 Deploy and scale Telegram bots with our optimized hosting platform. Perfect for customer service bots, notification systems, and interactive Telegram applications.
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
-                <button className="bg-accent hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-tech-mono font-medium transition-all duration-300 transform hover:scale-105" data-testid="button-deploy-bot">
+                <button
+                  onClick={scrollToPricing}
+                  className="bg-accent hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-tech-mono font-medium transition-all duration-300 transform hover:scale-105"
+                  data-testid="button-deploy-bot"
+                >
                   Deploy Your Bot
                 </button>
-                <button className="border-2 border-accent hover:bg-accent/10 text-accent hover:text-white px-8 py-4 rounded-xl font-tech-mono font-medium transition-all duration-300" data-testid="button-view-examples">
-                  View Examples
+                <button
+                  onClick={goToDocs}
+                  className="border-2 border-accent hover:bg-accent/10 text-accent hover:text-white px-8 py-4 rounded-xl font-tech-mono font-medium transition-all duration-300"
+                  data-testid="button-view-examples"
+                >
+                  View Documentation
                 </button>
               </div>
             </div>
-            <div className="bg-secondary/50 rounded-3xl p-8 border border-custom">
-              <div className="text-center">
-                <div className="w-32 h-32 bg-accent/10 rounded-3xl flex items-center justify-center mx-auto mb-8">
-                  <i className="fab fa-telegram text-accent text-6xl"></i>
-                </div>
-                <div className="bg-accent/5 rounded-2xl p-6 border border-accent/20">
-                  <h3 className="text-xl font-bold text-white font-orbitron mb-4">
-                    Instant Deployment
-                  </h3>
-                  <p className="text-secondary font-tech-mono">
-                    Get your Telegram bot live in seconds with our automated deployment pipeline.
-                  </p>
-                </div>
-              </div>
+            {/* The illustration is replaced with a fading icon system */}
+            <div className="relative h-96 flex items-center justify-center">
+              <i className="fab fa-telegram text-5xl text-cyan-400 absolute top-1/4 left-1/4 animate-pulse opacity-0" style={{ animation: 'fade-and-float 5s infinite' }}></i>
+              <i className="fab fa-telegram text-4xl text-indigo-400 absolute bottom-1/4 right-1/4 animate-pulse opacity-0" style={{ animation: 'fade-and-float 5s infinite 1s' }}></i>
+              <i className="fab fa-telegram text-6xl text-purple-400 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse opacity-0" style={{ animation: 'fade-and-float 5s infinite 2s' }}></i>
+              <i className="fab fa-telegram text-3xl text-lime-400 absolute top-1/3 right-1/3 animate-pulse opacity-0" style={{ animation: 'fade-and-float 5s infinite 3s' }}></i>
+              <i className="fab fa-telegram text-xl text-blue-400 absolute bottom-1/3 left-1/3 animate-pulse opacity-0" style={{ animation: 'fade-and-float 5s infinite 4s' }}></i>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-24 lg:py-32 bg-secondary" data-testid="telegram-features">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 mb-6 bg-accent px-4 py-2 rounded-xl">
-              <i className="fas fa-rocket text-white"></i>
-              <span className="text-white font-tech-mono font-medium uppercase tracking-wider">
-                Features
-              </span>
-            </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 font-orbitron" data-testid="telegram-features-title">
-              Powerful <span className="text-accent">Bot Hosting</span>
-            </h2>
-            <p className="text-secondary text-xl max-w-3xl mx-auto leading-relaxed font-tech-mono" data-testid="telegram-features-subtitle">
-              Everything you need to build and scale successful Telegram bots.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <FeatureCard
-                key={index}
-                icon={feature.icon}
-                title={feature.title}
-                description={feature.description}
-              />
-            ))}
           </div>
         </div>
       </section>
@@ -217,72 +246,8 @@ export default function TelegramBotHosting() {
         </div>
       </section>
 
-      {/* Use Cases Section */}
-      <section className="py-24 lg:py-32" data-testid="telegram-use-cases">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 mb-6 bg-accent px-4 py-2 rounded-xl">
-              <i className="fas fa-lightbulb text-white"></i>
-              <span className="text-white font-tech-mono font-medium uppercase tracking-wider">
-                Use Cases
-              </span>
-            </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 font-orbitron" data-testid="use-cases-title">
-              What You Can <span className="text-accent">Build</span>
-            </h2>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "fas fa-headset",
-                title: "Customer Support",
-                description: "Automated customer service with AI integration and human handoff capabilities."
-              },
-              {
-                icon: "fas fa-bell",
-                title: "Notification System",
-                description: "Send alerts, updates, and notifications to users or groups automatically."
-              },
-              {
-                icon: "fas fa-shopping-cart",
-                title: "E-commerce Bot",
-                description: "Product catalogs, order management, and payment processing through Telegram."
-              },
-              {
-                icon: "fas fa-chart-line",
-                title: "Analytics Bot",
-                description: "Real-time dashboards and reports delivered directly to your Telegram."
-              },
-              {
-                icon: "fas fa-calendar",
-                title: "Booking System",
-                description: "Appointment scheduling and calendar management through conversational interface."
-              },
-              {
-                icon: "fas fa-gamepad",
-                title: "Gaming Bot",
-                description: "Interactive games, quizzes, and entertainment for your Telegram community."
-              }
-            ].map((useCase, index) => (
-              <div key={index} className="bg-secondary/50 rounded-2xl p-8 border border-custom hover:border-accent/50 transition-colors text-center" data-testid={`use-case-${index}`}>
-                <div className="w-16 h-16 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-6">
-                  <i className={`${useCase.icon} text-accent text-2xl`}></i>
-                </div>
-                <h3 className="text-xl font-bold text-white font-orbitron mb-4" data-testid={`use-case-title-${index}`}>
-                  {useCase.title}
-                </h3>
-                <p className="text-secondary font-tech-mono leading-relaxed" data-testid={`use-case-description-${index}`}>
-                  {useCase.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Pricing Section */}
-      <section className="py-24 lg:py-32 bg-secondary" data-testid="telegram-pricing">
+      <section ref={pricingRef} className="py-24 lg:py-32 bg-secondary" data-testid="telegram-pricing">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 mb-6 bg-accent px-4 py-2 rounded-xl">
@@ -309,70 +274,8 @@ export default function TelegramBotHosting() {
                 features={plan.features}
                 isPopular={plan.isPopular}
                 buttonText={plan.buttonText}
+                onOrderClick={() => handleOrderClick(plan.checkoutUrl)}
               />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="py-24 lg:py-32" data-testid="telegram-how-it-works">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 mb-6 bg-accent px-4 py-2 rounded-xl">
-              <i className="fas fa-cogs text-white"></i>
-              <span className="text-white font-tech-mono font-medium uppercase tracking-wider">
-                How It Works
-              </span>
-            </div>
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 font-orbitron" data-testid="how-it-works-title">
-              Deploy in <span className="text-accent">4 Easy Steps</span>
-            </h2>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                step: "1",
-                title: "Create Bot",
-                description: "Create your bot with @BotFather on Telegram and get your bot token.",
-                icon: "fab fa-telegram"
-              },
-              {
-                step: "2",
-                title: "Upload Code",
-                description: "Upload your bot code or connect your GitHub repository to our platform.",
-                icon: "fas fa-upload"
-              },
-              {
-                step: "3",
-                title: "Configure",
-                description: "Set your bot token, environment variables, and webhook endpoints.",
-                icon: "fas fa-cog"
-              },
-              {
-                step: "4",
-                title: "Go Live",
-                description: "Deploy instantly and start receiving messages from your Telegram bot.",
-                icon: "fas fa-rocket"
-              }
-            ].map((item, index) => (
-              <div key={index} className="text-center" data-testid={`step-${index}`}>
-                <div className="relative mb-8">
-                  <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto">
-                    <i className={`${item.icon} text-white text-2xl`}></i>
-                  </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-secondary border-2 border-accent rounded-full flex items-center justify-center">
-                    <span className="text-accent font-bold font-orbitron text-sm">{item.step}</span>
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-white font-orbitron mb-4" data-testid={`step-title-${index}`}>
-                  {item.title}
-                </h3>
-                <p className="text-secondary font-tech-mono leading-relaxed" data-testid={`step-description-${index}`}>
-                  {item.description}
-                </p>
-              </div>
             ))}
           </div>
         </div>
@@ -416,11 +319,12 @@ export default function TelegramBotHosting() {
               Join thousands of developers building amazing Telegram experiences with Portix Host.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button className="bg-accent hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-tech-mono font-medium transition-all duration-300 transform hover:scale-105" data-testid="button-start-now">
+              <button
+                onClick={scrollToPricing}
+                className="bg-accent hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-tech-mono font-medium transition-all duration-300 transform hover:scale-105"
+                data-testid="button-start-now"
+              >
                 Start Hosting Now
-              </button>
-              <button className="border-2 border-accent hover:bg-accent/10 text-accent hover:text-white px-8 py-4 rounded-xl font-tech-mono font-medium transition-all duration-300" data-testid="button-talk-to-expert">
-                Talk to Expert
               </button>
             </div>
           </div>
