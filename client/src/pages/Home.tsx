@@ -453,7 +453,6 @@ export default function Home() {
         </div>
       </section>
 
-// Testimonials Section
 <section className="py-24 lg:py-32 bg-primary" data-testid="testimonials-section">
   <div className="container mx-auto px-4">
     {/* Section Header */}
