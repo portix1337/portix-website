@@ -21,7 +21,7 @@ const siteConfig = {
         { name: "Documentation", href: "https://docs.portix.online" },
         { name: "Contact Us", href: "https://support.portix.online" },
         { name: "Status Page", href: "https://status.portix.online" },
-        { name: "Community", href: "https://discord.gg/your-discord-invite" }, // Placeholder for discord link
+        { name: "Community", href: "https://discord.gg/Q7NDCe7r" }, // Placeholder for discord link
       ],
       legal: [
         { name: "Terms of Service", href: "https://tos.portix.online" },

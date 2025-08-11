@@ -12,7 +12,7 @@ export default function Layout({ children }: LayoutProps) {
       {/* Discount Banner */}
       <div className="bg-accent text-white text-center py-3" data-testid="discount-banner">
         <p className="font-tech-mono text-sm">
-          <span className="font-medium">🎉 LIMITED TIME:</span> Get 30% OFF your first month with code <span className="bg-white/20 px-2 py-1 rounded font-bold">WELCOME30</span>
+          <span className="font-medium"></span><span className="bg-white/20 px-2 py-1 rounded font-bold">WELCOME TO PORTIXHOST</span>
         </p>
       </div>
       

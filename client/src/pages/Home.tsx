@@ -453,115 +453,119 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-24 lg:py-32 bg-primary" data-testid="testimonials-section">
-        <div className="container mx-auto px-4">
-          {/* Removed Section Tag */}
-          <div className="text-center mb-16">
-            <h2
-              className={`${siteConfig.fonts.headingSizes.section} font-bold mb-6 font-orbitron`}
-              style={{ fontFamily: siteConfig.fonts.heading }}
-              data-testid="testimonials-title"
-            >
-              What Our Customers Say
-            </h2>
-            <p
-              className="text-secondary text-xl max-w-3xl mx-auto leading-relaxed font-tech-mono"
-              style={{ fontFamily: siteConfig.fonts.body }}
-              data-testid="testimonials-subtitle"
-            >
-              Join thousands of satisfied customers who trust Portix Host for their hosting needs.
-            </p>
+// Testimonials Section
+<section className="py-24 lg:py-32 bg-primary" data-testid="testimonials-section">
+  <div className="container mx-auto px-4">
+    {/* Section Header */}
+    <div className="text-center mb-16">
+      <h2
+        className={`${siteConfig.fonts.headingSizes.section} font-bold mb-6 font-orbitron`}
+        style={{ fontFamily: siteConfig.fonts.heading }}
+        data-testid="testimonials-title"
+      >
+        What Our <span style={{ color: '#0195f4' }}>Customers Say</span>
+      </h2>
+      <p
+        className="text-secondary text-xl max-w-3xl mx-auto leading-relaxed font-tech-mono"
+        style={{ fontFamily: siteConfig.fonts.body }}
+        data-testid="testimonials-subtitle"
+      >
+        Join thousands of satisfied customers who trust Portix Host for their hosting needs.
+      </p>
+    </div>
+
+    {/* Testimonial Slider */}
+    <div className="max-w-4xl mx-auto">
+      <div className="relative bg-secondary/50 backdrop-blur-sm rounded-3xl p-12 border border-custom/50 shadow-2xl">
+        {/* Navigation Arrows */}
+        <button
+          onClick={prevTestimonial}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-accent/10 hover:bg-accent/20 rounded-full flex items-center justify-center transition-colors"
+          data-testid="testimonial-prev"
+        >
+          <ChevronLeft className="w-6 h-6 text-accent" />
+        </button>
+
+        <button
+          onClick={nextTestimonial}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-accent/10 hover:bg-accent/20 rounded-full flex items-center justify-center transition-colors"
+          data-testid="testimonial-next"
+        >
+          <ChevronRight className="w-6 h-6 text-accent" />
+        </button>
+
+        {/* Testimonial Content */}
+        <div className="text-center px-16">
+          <div className="flex justify-center mb-4">
+            {/* Trustpilot-like green stars with smaller size */}
+            {[...Array(siteConfig.testimonials[currentTestimonial].rating)].map((_, i) => (
+              <Star key={i} className="w-4 h-4 text-green-500 fill-current mx-0.5" />
+            ))}
           </div>
 
-          {/* Testimonial Slider */}
-          <div className="max-w-4xl mx-auto">
-            <div className="relative bg-secondary/50 backdrop-blur-sm rounded-3xl p-12 border border-custom/50 shadow-2xl">
-              {/* Navigation Arrows */}
-              <button
-                onClick={prevTestimonial}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-accent/10 hover:bg-accent/20 rounded-full flex items-center justify-center transition-colors"
-                data-testid="testimonial-prev"
+          <blockquote
+            // Reverting the review text color back to white
+            className="text-md lg:text-lg text-white mb-6 leading-relaxed font-tech-mono"
+            style={{ fontFamily: siteConfig.fonts.body }}
+            data-testid={`testimonial-text-${currentTestimonial}`}
+          >
+            "{siteConfig.testimonials[currentTestimonial].text}"
+          </blockquote>
+
+          <div className="flex items-center justify-center space-x-4">
+            <img
+              src={siteConfig.testimonials[currentTestimonial].avatar}
+              alt={siteConfig.testimonials[currentTestimonial].name}
+              className="w-16 h-16 rounded-full border-2 border-accent"
+              data-testid={`testimonial-avatar-${currentTestimonial}`}
+            />
+            <div className="text-left">
+              <div
+                className="font-bold text-lg font-orbitron"
+                style={{ fontFamily: siteConfig.fonts.heading }}
+                data-testid={`testimonial-name-${currentTestimonial}`}
               >
-                <ChevronLeft className="w-6 h-6 text-accent" />
-              </button>
-
-              <button
-                onClick={nextTestimonial}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-accent/10 hover:bg-accent/20 rounded-full flex items-center justify-center transition-colors"
-                data-testid="testimonial-next"
+                {siteConfig.testimonials[currentTestimonial].name}
+              </div>
+              <div
+                className="text-secondary font-tech-mono"
+                style={{ fontFamily: siteConfig.fonts.body }}
+                data-testid={`testimonial-role-${currentTestimonial}`}
               >
-                <ChevronRight className="w-6 h-6 text-accent" />
-              </button>
-
-              {/* Testimonial Content */}
-              <div className="text-center px-16">
-                <div className="flex justify-center mb-6">
-                  {[...Array(siteConfig.testimonials[currentTestimonial].rating)].map((_, i) => (
-                    <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-
-                <blockquote
-                  className="text-xl lg:text-2xl text-white mb-8 leading-relaxed font-tech-mono"
-                  style={{ fontFamily: siteConfig.fonts.body }}
-                  data-testid={`testimonial-text-${currentTestimonial}`}
-                >
-                  "{siteConfig.testimonials[currentTestimonial].text}"
-                </blockquote>
-
-                <div className="flex items-center justify-center space-x-4">
-                  <img
-                    src={siteConfig.testimonials[currentTestimonial].avatar}
-                    alt={siteConfig.testimonials[currentTestimonial].name}
-                    className="w-16 h-16 rounded-full border-2 border-accent"
-                    data-testid={`testimonial-avatar-${currentTestimonial}`}
-                  />
-                  <div className="text-left">
-                    <div
-                      className="font-bold text-lg font-orbitron"
-                      style={{ fontFamily: siteConfig.fonts.heading }}
-                      data-testid={`testimonial-name-${currentTestimonial}`}
-                    >
-                      {siteConfig.testimonials[currentTestimonial].name}
-                    </div>
-                    <div
-                      className="text-secondary font-tech-mono"
-                      style={{ fontFamily: siteConfig.fonts.body }}
-                      data-testid={`testimonial-role-${currentTestimonial}`}
-                    >
-                      {siteConfig.testimonials[currentTestimonial].role}
-                    </div>
-                  </div>
-                </div>
+                {siteConfig.testimonials[currentTestimonial].role}
               </div>
-
-              {/* Testimonial Indicators */}
-              <div className="flex justify-center mt-8 space-x-2">
-                {siteConfig.testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentTestimonial(index)}
-                    className={`w-3 h-3 rounded-full transition-colors ${
-                      index === currentTestimonial ? 'bg-accent' : 'bg-custom'
-                    }`}
-                    data-testid={`testimonial-indicator-${index}`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Trustpilot Button */}
-            <div className="text-center mt-12">
-              <button className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-tech-mono font-medium transition-colors shadow-lg flex items-center justify-center space-x-2 mx-auto">
-                <Star className="w-5 h-5 text-white" fill="currentColor" />
-                <span>Read more reviews on Trustpilot</span>
-              </button>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+      
+      {/* Testimonial Indicators - Placed outside the box and centered above the Trustpilot button */}
+      <div className="flex justify-center mt-8 space-x-2">
+        {siteConfig.testimonials.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentTestimonial(index)}
+            className={`w-3 h-3 rounded-full transition-colors ${
+              index === currentTestimonial ? 'bg-accent' : 'bg-custom'
+            }`}
+            data-testid={`testimonial-indicator-${index}`}
+          />
+        ))}
+      </div>
 
+      {/* Trustpilot Button */}
+      <div className="text-center mt-12">
+        <a href="https://www.trustpilot.com/review/portix.online" target="_blank" rel="noopener noreferrer">
+          <button className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-tech-mono font-medium transition-colors shadow-lg flex items-center justify-center space-x-2 mx-auto">
+            {/* Trustpilot-like green stars with smaller size */}
+            <Star className="w-5 h-5 text-white" fill="currentColor" />
+            <span>Review on Trustpilot</span>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
       {/* FAQ Section */}
       <section className="py-24 lg:py-32 bg-secondary" data-testid="faq-section">
         <div className="container mx-auto px-4">

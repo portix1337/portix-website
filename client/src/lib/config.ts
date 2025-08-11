@@ -36,11 +36,7 @@ export const siteConfig = {
     }
   },
   
-  // Discount banner
-  discountBanner: {
-    enabled: false,
-    text: "🚀 Portix Host — Coming Soon! Launching soon with unbeatable deals!"
-  },
+ 
   
   // Hero section
   hero: {
@@ -216,24 +212,24 @@ image: "https://raw.githubusercontent.com/portix1337/assets/main/hero.png",
   testimonials: [
     {
       text: "Portix Host has been incredible for hosting my Discord bot. The uptime is fantastic and support is always helpful when I need assistance.",
-      name: "Alex Chen",
-      role: "Discord Bot Developer",
-      rating: 5,
-      avatar: "/api/placeholder/64/64"
+      name: "Ahmed ",
+      role: "",
+      rating: 4,
+      avatar: "https://raw.githubusercontent.com/portix1337/assets/refs/heads/main/a%20logo.jpg"
     },
     {
       text: "I've been hosting my gaming community's website here for over a year. The performance is consistently excellent and the prices are unbeatable.",
-      name: "Sarah Williams", 
-      role: "Gaming Community Manager",
+      name: "Saad Khan", 
+      role: "",
       rating: 5,
-      avatar: "/api/placeholder/64/64"
+      avatar: "https://raw.githubusercontent.com/portix1337/assets/refs/heads/main/m%20logo.jpg"
     },
     {
       text: "As a developer, I appreciate the technical features and API access. Portix Host makes it easy to deploy and manage my applications.",
-      name: "Michael Rodriguez",
-      role: "Full Stack Developer",
-      rating: 5,
-      avatar: "/api/placeholder/64/64"
+      name: "Mohid Ali",
+      role: "",
+      rating: 4,
+      avatar: "https://raw.githubusercontent.com/portix1337/assets/refs/heads/main/s%20logo.jpg"
     }
   ],
 
